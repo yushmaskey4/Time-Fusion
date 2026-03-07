@@ -59,14 +59,14 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">Email: info@timefusion.com</p>
           <div className="flex gap-4 mt-4">
             <a
-              href="https://facebook.com/yush.maskey"
+              href="https://facebook.com"
               target="_blank"
               className="hover:text-blue-500 text-2xl transition"
             >
               <FaFacebook />
             </a>
             <a
-              href="https://instagram.com/yush_maskey"
+              href="https://instagram.com"
               target="_blank"
               className="hover:text-pink-500 text-2xl transition"
             >

@@ -11,7 +11,7 @@ export const productsData = [
   {
     id: 101,
     name: "Patek Philippe Nautilus",
-    price: 4500000,
+    price: 450000,
     category: "Luxury",
     brand: "Patek",
     image:
@@ -90,7 +90,7 @@ export const productsData = [
   {
     id: 103,
     name: "Audemars Piguet Royal Oak",
-    price: 3800000,
+    price: 3799999,
     category: "Luxury",
     brand: "AP",
     image:
@@ -153,7 +153,7 @@ export const productsData = [
   {
     id: 135,
     name: "Omega Speedmaster",
-    price: 1800000,
+    price: 1699999,
     category: "Limited",
     brand: "Omega",
     image:
@@ -233,7 +233,7 @@ export const productsData = [
   {
     id: 136,
     name: "Hublot Big Bang Gold",
-    price: 2800000,
+    price: 1999999,
     category: "Limited",
     brand: "Hublot",
     image:
@@ -251,7 +251,7 @@ export const productsData = [
   {
     id: 105,
     name: "Vacheron Constantin",
-    price: 5200000,
+    price: 519999,
     category: "Luxury",
     brand: "VC",
     image:

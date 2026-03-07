@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const handleCheckout = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  
+
   if (isLoggedIn) {
     navigate("/checkout");
     onClose();
@@ -95,7 +95,9 @@ const CartDrawer = ({ isOpen, onClose }) => {
         <div className="border-t border-gray-800 pt-4">
           <div className="flex justify-between text-xl font-bold mb-4">
             <span>Total:</span>
-            <span className="text-yellow-500">Rs. {total.toLocaleString()}</span>
+            <span className="text-yellow-500">
+              Rs. {total.toLocaleString()}
+            </span>
           </div>
           <Link
             to="/checkout"
