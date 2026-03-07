@@ -1,6 +1,19 @@
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
+const handleCheckout = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  
+  if (isLoggedIn) {
+    navigate("/checkout");
+    onClose();
+  } else {
+    alert("Please login to proceed to checkout!");
+    navigate("/login");
+    onClose();
+  }
+};
+
 const CartDrawer = ({ isOpen, onClose }) => {
   const { cart, removeFromCart, addToCart, decreaseQuantity } = useCart();
 
