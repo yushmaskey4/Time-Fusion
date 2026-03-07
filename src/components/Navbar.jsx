@@ -65,7 +65,7 @@ const Navbar = () => {
             {isLoggedIn && isProfileOpen && (
               <div className="absolute right-0 mt-3 w-52 bg-gray-900 border border-gray-800 rounded shadow-2xl z-60">
                 <div className="p-4 border-b border-gray-800">
-                  <p className="text-sm font-bold text-yellow-500">Yush Maskey</p>
+                  <p className="text-sm font-bold text-yellow-500">Balen Sampang Oli</p>
                 </div>
                 <div className="flex flex-col p-2 text-sm text-white">
                   <Link to="/profile" onClick={() => setIsProfileOpen(false)} className="p-2 hover:bg-gray-800 rounded text-left">My Profile</Link>

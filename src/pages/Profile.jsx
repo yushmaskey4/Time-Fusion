@@ -8,7 +8,7 @@ const Profile = () => {
           <h2 className="text-xl mb-6">Update Information</h2>
           <div className="space-y-4">
             <div><label className="text-xs text-gray-500">Username</label>
-            <input type="text" defaultValue="Yush Maskey" className="w-full bg-black p-3 rounded border border-gray-800" /></div>
+            <input type="text" defaultValue="Balen Sampang Oli" className="w-full bg-black p-3 rounded border border-gray-800" /></div>
             <div><label className="text-xs text-gray-500">Contact Number</label>
             <input type="text" defaultValue="+977-98XXXXXXXX" className="w-full bg-black p-3 rounded border border-gray-800" /></div>
             <div><label className="text-xs text-gray-500">Address</label>
