@@ -3,7 +3,16 @@
 @theme {
   --color-primaryBlack: #0a0a0a;
   --color-gold: #d4af37;
+  
+  /* Luxury Watch Arrow ko lagi naya animation */
+  --animate-spin-slow: spin-slow 20s linear infinite;
+
+  @keyframes spin-slow {
+    from { transform: translate(-50%, -100%) rotate(0deg); }
+    to { transform: translate(-50%, -100%) rotate(360deg); }
+  }
 }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -11,4 +20,4 @@
 
 .page-transition {
   animation: fadeIn 0.5s ease-out forwards;
-}   
+}
