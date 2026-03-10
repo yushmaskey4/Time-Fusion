@@ -29,15 +29,24 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex justify-between items-center p-5 bg-black border-b border-gray-800 sticky top-0 z-50">
+        {/* Mobile Hamburger Icon - Left Side */}
+        <button
+          className="md:hidden text-yellow-500 text-2xl focus:outline-none order-1"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? "✕" : "☰"}
+        </button>
+
         {/* Logo */}
         <Link
           to="/"
-          className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter"
+          className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter order-2"
         >
           TIME FUSION
         </Link>
 
-        <div className="hidden md:flex space-x-8">
+        {/* Desktop Links */}
+        <div className="hidden md:flex space-x-8 order-3">
           <NavLink to="/" className={activeStyle}>
             Home
           </NavLink>
@@ -52,8 +61,8 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        {/* Right Side Actions (Cart + User Profile) */}
-        <div className="flex items-center gap-6">
+        {/* Right Side Actions */}
+        <div className="flex items-center gap-6 order-4">
           {/* Cart Icon */}
           <div
             className="relative cursor-pointer text-white flex items-center gap-1 hover:text-yellow-500 transition"
@@ -67,7 +76,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* User Profile (Click based) */}
+          {/* User Profile */}
           <div className="relative">
             <button
               onClick={() =>
@@ -115,6 +124,40 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Dropdown */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-black border-b border-gray-800 flex flex-col items-center py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
+          <NavLink
+            to="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white hover:text-yellow-500 py-2"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/products"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white hover:text-yellow-500 py-2"
+          >
+            Products
+          </NavLink>
+          <NavLink
+            to="/about"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white hover:text-yellow-500 py-2"
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white hover:text-yellow-500 py-2"
+          >
+            Contact
+          </NavLink>
+        </div>
+      )}
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
