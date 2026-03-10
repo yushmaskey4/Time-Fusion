@@ -2,7 +2,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
 import CartDrawer from "./CartDrawer";
-import { motion, AnimatePresence } from "framer-motion"; // Animation ko lagi
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const { cart } = useCart();
@@ -29,10 +29,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex justify-between items-center p-5 bg-black border-b border-gray-800 sticky top-0 z-[100]">
+      {/* Navbar Container */}
+      <nav className="relative flex justify-between items-center p-5 bg-black border-b border-gray-800 top-0 z-100">
         {/* Mobile Hamburger Icon */}
         <button
-          className="md:hidden text-yellow-500 text-2xl focus:outline-none z-[110]"
+          className="md:hidden text-yellow-500 text-2xl focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? "✕" : "☰"}
@@ -122,41 +123,42 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown (Overlay Style) */}
+        {/* --- MOBILE DROPDOWN --- */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ y: "-100%" }} 
-              animate={{ y: 0 }} 
-              exit={{ y: "-100%" }} 
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed top-0 left-0 w-full h-[60vh] bg-black/95 backdrop-blur-md border-b border-gray-800 flex flex-col items-center justify-center space-y-8 md:hidden z-[90] shadow-2xl"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              
+              className="absolute top-full left-0 w-full bg-black/80 backdrop-blur-lg border-b border-gray-800 flex flex-col items-center py-8 space-y-6 md:hidden z-[-1] overflow-hidden"
             >
               <NavLink
                 to="/"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-white hover:text-yellow-500"
+                className="text-xl text-white hover:text-yellow-500 transition-colors uppercase tracking-widest font-light"
               >
                 Home
               </NavLink>
               <NavLink
                 to="/products"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-white hover:text-yellow-500"
+                className="text-xl text-white hover:text-yellow-500 transition-colors uppercase tracking-widest font-light"
               >
                 Products
               </NavLink>
               <NavLink
                 to="/about"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-white hover:text-yellow-500"
+                className="text-xl text-white hover:text-yellow-500 transition-colors uppercase tracking-widest font-light"
               >
                 About
               </NavLink>
               <NavLink
                 to="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-white hover:text-yellow-500"
+                className="text-xl text-white hover:text-yellow-500 transition-colors uppercase tracking-widest font-light"
               >
                 Contact
               </NavLink>
