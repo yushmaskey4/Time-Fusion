@@ -2,12 +2,13 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
 import CartDrawer from "./CartDrawer";
+import { motion, AnimatePresence } from "framer-motion"; // Animation ko lagi
 
 const Navbar = () => {
   const { cart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false); // Dropdown control
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -28,10 +29,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex justify-between items-center p-5 bg-black border-b border-gray-800 sticky top-0 z-50">
-        {/* Mobile Hamburger Icon - Left Side */}
+      <nav className="flex justify-between items-center p-5 bg-black border-b border-gray-800 sticky top-0 z-[100]">
+        {/* Mobile Hamburger Icon */}
         <button
-          className="md:hidden text-yellow-500 text-2xl focus:outline-none order-1"
+          className="md:hidden text-yellow-500 text-2xl focus:outline-none z-[110]"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? "✕" : "☰"}
@@ -40,13 +41,13 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter order-2"
+          className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter"
         >
           TIME FUSION
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-8 order-3">
+        <div className="hidden md:flex space-x-8">
           <NavLink to="/" className={activeStyle}>
             Home
           </NavLink>
@@ -62,8 +63,7 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-6 order-4">
-          {/* Cart Icon */}
+        <div className="flex items-center gap-6">
           <div
             className="relative cursor-pointer text-white flex items-center gap-1 hover:text-yellow-500 transition"
             onClick={() => setIsCartOpen(true)}
@@ -76,7 +76,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* User Profile */}
           <div className="relative">
             <button
               onClick={() =>
@@ -89,7 +88,6 @@ const Navbar = () => {
               👤
             </button>
 
-            {/* Dropdown Menu */}
             {isLoggedIn && isProfileOpen && (
               <div className="absolute right-0 mt-3 w-52 bg-gray-900 border border-gray-800 rounded shadow-2xl z-60">
                 <div className="p-4 border-b border-gray-800">
@@ -123,41 +121,49 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </nav>
 
-      {/* Mobile Menu Dropdown */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-black border-b border-gray-800 flex flex-col items-center py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
-          <NavLink
-            to="/"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-white hover:text-yellow-500 py-2"
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/products"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-white hover:text-yellow-500 py-2"
-          >
-            Products
-          </NavLink>
-          <NavLink
-            to="/about"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-white hover:text-yellow-500 py-2"
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/contact"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-white hover:text-yellow-500 py-2"
-          >
-            Contact
-          </NavLink>
-        </div>
-      )}
+        {/* Mobile Menu Dropdown (Overlay Style) */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ y: "-100%" }} 
+              animate={{ y: 0 }} 
+              exit={{ y: "-100%" }} 
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="fixed top-0 left-0 w-full h-[60vh] bg-black/95 backdrop-blur-md border-b border-gray-800 flex flex-col items-center justify-center space-y-8 md:hidden z-[90] shadow-2xl"
+            >
+              <NavLink
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl text-white hover:text-yellow-500"
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/products"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl text-white hover:text-yellow-500"
+              >
+                Products
+              </NavLink>
+              <NavLink
+                to="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl text-white hover:text-yellow-500"
+              >
+                About
+              </NavLink>
+              <NavLink
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl text-white hover:text-yellow-500"
+              >
+                Contact
+              </NavLink>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
